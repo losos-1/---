@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Личный сайт специалиста. Профессиональный путь, услуги и онлайн-запись.">
+<meta name="color-scheme" content="light">
+<title>Практика — личный сайт специалиста</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="top wrap" id="top">
+  <nav aria-label="Основное меню">
+    <a href="#about">Обо мне</a>
+    <a href="#credentials">Дипломы</a>
+    <a href="#services">Услуги</a>
+    <a href="#reviews" data-nav="reviews">Отзывы</a>
+    <a href="#faq" data-nav="faq">Вопросы</a>
+    <a href="#booking">Запись</a>
+  </nav>
+  <div class="header-contacts" role="group" aria-label="Контакты">
+    <div class="contact-icons">
+      <a class="contact-icon" data-contact="telegram" role="link" aria-label="Telegram" aria-disabled="true" title="Telegram — ссылка пока не указана">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21 4 3 11a1 1 0 0 0 .1 1.9l4.4 1.4 2 4.7a.8.8 0 0 0 1.3.3l2.4-2.2 4.6 3.3a1 1 0 0 0 1.6-.6L23 5.2A1 1 0 0 0 21 4ZM9 13.6l10.5-6.8-8.1 8.3-.4 2.5L9 13.6Z"/></svg>
+      </a>
+      <a class="contact-icon" data-contact="max" role="link" aria-label="MAX" aria-disabled="true" title="MAX — ссылка пока не указана">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 0 0-7.6 12.3L3.5 20l4-1.3A8.5 8.5 0 1 0 12 3.5Z"/><path d="M8.5 14.4V9.6l3.5 3.2 3.5-3.2v4.8"/></svg>
+      </a>
+      <a class="contact-icon" data-contact="phone" role="link" aria-label="Телефон" aria-disabled="true" title="Телефон — номер пока не указан">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 3.8 10 8.2l-2 2.2a13 13 0 0 0 5.6 5.6l2.2-2 4.4 2.6a1.4 1.4 0 0 1 .6 1.7l-.6 1.7a1.4 1.4 0 0 1-1.4 1C10 20.6 3.4 14 3 5.2a1.4 1.4 0 0 1 1-1.4l1.7-.6a1.4 1.4 0 0 1 1.7.6Z"/></svg>
+      </a>
+      <a class="contact-icon" data-contact="vk" role="link" aria-label="ВКонтакте" aria-disabled="true" title="ВКонтакте — ссылка пока не указана">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7c1 5.8 4.4 10 9 10V7m0 7c3.5-.6 6.1-3.2 7.5-7m-5.4 6.3c2.5.7 4.1 2 5.8 4.7"/></svg>
+      </a>
+    </div>
+    <a class="header-phone" id="header-phone" hidden></a>
+  </div>
+</header>
+<main id="main">
+<section class="hero wrap" id="about" aria-labelledby="intro">
+  <div class="intro">
+    <h1 id="intro"><span class="accent">Здравствуйте!</span><br>Меня зовут<br><span id="person-name"></span></h1>
+    <p class="lead" id="bio"></p>
+    <div class="actions"><a href="#booking" class="primary">Выбрать время <span aria-hidden="true">→</span></a><a href="#services" class="text-link">Смотреть услуги <span aria-hidden="true">↓</span></a></div>
+  </div>
+  <figure class="hero-art" aria-hidden="true"><img src="hero.svg" alt="" width="620" height="535"></figure>
+</section>
+<section class="section wrap" id="topics" aria-labelledby="topics-title" hidden>
+  <h2 class="section-head" id="topics-title">С чем ко мне <span class="accent">обращаются</span></h2>
+  <ul class="topics" id="topic-list"></ul>
+</section>
+<section class="section wrap" id="credentials" aria-labelledby="credentials-title" hidden>
+  <h2 class="section-head" id="credentials-title"><span class="accent">Дипломы</span> и сертификаты</h2>
+  <div class="credential-carousel">
+    <button type="button" id="credential-prev" aria-label="Предыдущие документы" hidden>←</button>
+    <div class="credential-grid" id="credential-grid"></div>
+    <button type="button" id="credential-next" aria-label="Следующие документы" hidden>→</button>
+  </div>
+  <p class="sr-only" id="credential-range" role="status"></p>
+  <template id="credential-template">
+    <article class="credential-card">
+      <div class="credential-visual">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 7h21l12 12v35a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3V10a3 3 0 0 1 3-3Z M38 7v12h12 M22 28h20 M22 35h14"/>
+          <circle cx="38" cy="45" r="4"/>
+        </svg>
+        <img alt="" loading="lazy" hidden>
+      </div>
+      <div class="credential-info">
+          <h3></h3>
+        <p class="credential-status"></p>
+        <a class="text-link" target="_blank" rel="noopener noreferrer" hidden>Открыть документ →</a>
+      </div>
+    </article>
+  </template>
+</section>
+<section class="section wrap" id="steps" aria-labelledby="steps-title" hidden>
+  <h2 class="section-head" id="steps-title">Как проходит <span class="accent">работа</span></h2>
+  <ol class="steps" id="step-list"></ol>
+</section>
+<section class="section wrap" id="services">
+  <h2 class="section-head"><span class="accent">Услуги</span> и стоимость</h2>
+  <div id="service-list" class="services"></div>
+</section>
+<section class="section wrap" id="reviews" aria-labelledby="reviews-title" hidden>
+  <h2 class="section-head" id="reviews-title"><span class="accent">Отзывы</span> клиентов</h2>
+  <p class="section-note" id="reviews-note" hidden>Примеры отзывов для демонстрации. На настоящем сайте здесь будут отзывы клиентов, давших согласие на публикацию.</p>
+  <div class="slider" role="region" aria-roledescription="карусель" aria-label="Отзывы клиентов">
+    <div class="slider-track" id="review-list" tabindex="0" aria-label="Отзывы, листаются по горизонтали"></div>
+    <div class="slider-controls" id="review-controls" hidden>
+      <button type="button" class="slider-arrow" id="review-prev" aria-label="Предыдущие отзывы">←</button>
+      <div class="slider-dots" id="review-dots"></div>
+      <button type="button" class="slider-arrow" id="review-next" aria-label="Следующие отзывы">→</button>
+    </div>
+  </div>
+  <a class="text-link reviews-more" id="reviews-more" target="_blank" rel="noopener noreferrer" hidden>Все отзывы <span aria-hidden="true">→</span></a>
+</section>
+<section class="section wrap" id="faq" aria-labelledby="faq-title" hidden>
+  <div class="faq-layout">
+    <div class="faq-intro">
+      <h2 class="section-head" id="faq-title">Частые <span class="accent">вопросы</span></h2>
+      <p>Не нашли ответ? Задайте вопрос на встрече-знакомстве — она короче и дешевле обычной консультации.</p>
+      <a href="#booking" class="primary">Записаться <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="faq" id="faq-list"></div>
+  </div>
+</section>
+<section class="section wrap" id="booking">
+  <h2 class="section-head"><span class="accent">Запись</span> на встречу</h2>
+  <div class="booking">
+    <div class="booking-side booking-choice">
+      <label for="service" class="field-title">Выберите услугу</label>
+      <select id="service"></select>
+      <p class="service-meta" id="service-meta"></p>
+    </div>
+    <div class="calendar" id="calendar">
+      <div class="field-title">Выберите день и время (МСК)</div>
+      <div class="month-bar">
+        <button type="button" id="prev" aria-label="Предыдущий месяц">‹</button>
+        <strong id="month" aria-live="polite"></strong>
+        <button type="button" id="next" aria-label="Следующий месяц">›</button>
+      </div>
+      <div class="week" aria-hidden="true"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
+      <div class="days" id="days" role="group" aria-label="Дни месяца"></div>
+      <div class="time-list" id="times" role="group" aria-label="Время по Москве"></div>
+    </div>
+    <div class="booking-side booking-actions">
+      <div id="summary" class="summary" aria-live="polite">Выберите день и время в календаре.</div>
+      <button type="button" class="primary" id="confirm" disabled>Подтвердить демозапись <span aria-hidden="true">→</span></button>
+      <a class="primary" id="real-booking" hidden>Открыть расписание <span aria-hidden="true">→</span></a>
+      <p class="demo-note" id="demo-note">Демо. Тестовая запись сохраняется в этом браузере.</p>
+    </div>
+    <div class="provider-info" id="provider-info" hidden><p>Актуальное время и подтверждение встречи доступны в календаре специалиста.</p></div>
+  </div>
+  <div class="records" id="records" hidden><h3>Мои демозаписи</h3><ul id="record-list"></ul></div>
+  <p class="status" role="status" id="status"></p>
+</section>
+</main>
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-about">
+      <p class="footer-name" id="footer-name"></p>
+      <p id="footer-specialty"></p>
+      <p class="footer-format" id="footer-format" hidden></p>
+    </div>
+    <div class="footer-col" id="footer-contacts-col" hidden>
+      <h2 class="footer-title">Связаться</h2>
+      <ul class="footer-list" id="footer-contacts"></ul>
+    </div>
+    <div class="footer-col">
+      <h2 class="footer-title">Разделы</h2>
+      <ul class="footer-list" id="footer-nav"></ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p id="footer-legal"></p>
+    <a class="text-link" id="privacy-link" hidden>Политика конфиденциальности</a>
+    <a class="text-link" href="#top">Наверх ↑</a>
+    <p class="footer-meta-note" id="footer-meta-note" hidden>* Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещённой в России.</p>
+  </div>
+</footer>
+<noscript><p class="wrap">Включите JavaScript, чтобы посмотреть услуги и воспользоваться календарём.</p></noscript>
+</body>
+</html>
